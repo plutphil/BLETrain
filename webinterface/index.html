@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluetooth Train Controller</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Train Controller</h1>
+    <div>
+        <button id="connectButton">Connect</button>
+        <button id="disconnect" disabled>Disconnect</button><br>
+        <span id="status">-</span>
+        <span id="battery">-</span>
+    </div>
+    <div id="controls">
+        <br>
+        <label for="speed">Speed: </label><br>
+        <input type="range" id="speed" min="0" max="100" value="50"><br>
+        <br>
+        Direction<br>
+        <input type="checkbox" class="check" id="dir" onclick="senddir()"></input><br>
+        <br>
+        <button id="stop" onclick="stop()">STOP</button><br>
+        <button id="sig1" class="sig" onclick="playsound(1)">SIG1</button>
+        <button id="sig2" class="sig" onclick="playsound(2)">SIG2</button>
+        <br>
+        <br>
+        Light<br><br>
+        <label class="switch">
+        <input type="checkbox" id="light" class="check" onclick="setlamp()"></input>
+        <span class="slider round"></span>
+        </label>
+        <br><br>
+        <button id="settingsButton">Settings</button><br>
+    </div>
+    <!-- Settings Modaldisplay: none; -->
+    <div id="settingsModal" class="modal" style="display:block;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Train Settings</h2>
+            Enable Hysteresis<br>
+            <input type="checkbox" id="enhyst"></input><br>
+            Hysteresis<br>
+            <input id="hysteresis" type="range"></intput><br>
+            
+            motorsound<br>
+            <input type="checkbox" id="motorsound"></input><br>
+            manual sound playing / advertisements<br>
+            <input type="checkbox" id="motorsoundmanadv"></input><br>
+            
+            motor sound number<br>
+            <input type="number" id="sound1" value="1"></input><br>
+            start motor sound number<br>
+            <input type="number" id="sound1" value="1"></input><br>
+            stop motor sound number<br>
+            <input type="number" id="sound1" value="1"></input><br>
+            acceleration motor sound number<br>
+            <input type="number" id="sound1" value="1"></input><br>
+            brake sound number<br>
+            <input type="number" id="sound1" value="1"></input><br>
+            <br>
+
+
+            Sound 1 Advertisement<br>
+            <input type="number" id="sound1" value="1"></input><br>
+            Sound 2 Advertisement<br>
+            <input type="number" id="sound1" value="1"></input><br>
+            Sound 3 Advertisement<br>
+            <input type="number" id="sound1" value="1"></input><br>
+            <br>
+
+
+            Sound 1<br>
+            <input type="number" id="sound1" value="1"></input><br>
+            Sound 2<br>
+            <input type="number" id="sound2" value="1"></input><br>
+            Sound 3<br>
+            <input type="number" id="sound3" value="1"></input><br>
+            <br>
+
+
+            Enable Acceleration/Braking<br>
+            <input type="checkbox" id="acclbrake"></input><br>
+            <label for="acceleration">Acceleration: </label>
+            <input type="range" id="acceleration" min="0" max="100" value="50"><br><br>
+            <label for="brakePower">Brake Power: </label>
+            <input type="range" id="brakePower" min="0" max="100" value="50"><br><br>
+            <br>
+
+            Enable switch direction on reed contact
+            <input type="checkbox" id="reed"></input><br>
+            
+            <button id="saveSettings">Save Settings</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
