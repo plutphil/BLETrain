@@ -4,13 +4,18 @@ DFRobotDFPlayerMini myDFPlayer;
 #define DFPLAYER_TX 17 
 HardwareSerial mySoftwareSerial(1);
 
+bool playmotorsound = false;
+int soundmotor = 2;
+int soundmotorstart = 3;
+int soundmotorstop = 4;
+
+
 void dfPlayerSetup(){
   mySoftwareSerial.begin(9600, SERIAL_8N1, DFPLAYER_RX, DFPLAYER_TX);
   Serial.print("DFPLAYER");
   Serial.println(myDFPlayer.begin(mySoftwareSerial));
   myDFPlayer.volume(15);
 }
-bool playmotorsound = false;
 void printDetail(uint8_t type, int value){
   switch (type) {
     case TimeOut:
@@ -35,12 +40,12 @@ void printDetail(uint8_t type, int value){
       Serial.println("USB Removed!");
       break;
     case DFPlayerPlayFinished:
+      if(playmotorsound&&value!=2){
+        myDFPlayer.loop(soundmotor);
+      }
       Serial.print(F("Number:"));
       Serial.print(value);
       Serial.println(F(" Play Finished!"));
-      if(playmotorsound&&value!=2){
-        myDFPlayer.loop(2);
-      }
       break;
     case DFPlayerError:
       Serial.print(F("DFPlayerError:"));
