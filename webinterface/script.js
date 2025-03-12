@@ -114,6 +114,9 @@ async function connect() {
                 if(cmd=='r'){
                     reedStatus.style.background=Number(val)!=0?"red":"gray";
                 }
+                if(cmd=='c'){
+                    ladenStatus.style.background=Number(val)!=0?"red":"gray";
+                }
                 if(cmd=='a'){
                     splt = val.split(" ").splice(1);
                     console.log(splt)

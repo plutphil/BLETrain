@@ -1,8 +1,9 @@
 
 #define PIN_BAT 35
-
+#define PIN_CHARGING 18
 void initBattery(){
     pinMode(PIN_BAT, INPUT);
+    pinMode(PIN_CHARGING, INPUT_PULLUP);
 }
 float readBattery(){
     float sum;

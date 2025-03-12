@@ -12,7 +12,8 @@ void Demo_Task(void *arg)
 {
     for(;;){
         float batval = readBattery();
-        batval = batval/4096.f*3.3f*10.f;
+        //batval = batval/4096.f*3.3f*10.f*1.176764077f;
+        batval = batval*0.009480765269;
         printf("\rBatVal %0.2f    ",batval);
         characteristic->setValue(String(String("b")+batval).c_str());
         characteristic->notify();
@@ -22,8 +23,11 @@ void Demo_Task(void *arg)
         }
         for (size_t i = 0; i < 10; i++)
         {
-            characteristic->setValue("v"+std::to_string(pwmValue)
-            +"\n"+"r"+std::to_string(getReed()));
+            characteristic->setValue(
+                "v"+std::to_string(pwmValue)+std::string("\n")+
+                "r"+std::to_string(getReed())+std::string("\n")+
+                "c"+std::to_string(digitalRead(PIN_CHARGING))
+            );
             characteristic->notify();
             delay(100);
         }

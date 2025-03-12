@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bluetooth Train Controller</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <h1>Train Controller</h1>
     <div>
@@ -14,19 +16,34 @@
         <span id="status">-</span>
         <span id="battery">-</span>
         <div>
-            Batterie: <div id="batterie-status" class="statuslamp" style="background: greenyellow;">.</div>
-            Laden: <div id="laden-status" class="statuslamp" style="background: gray;">.</div>
-            Voll: <div id="voll-status" class="statuslamp">.</div>
-            Reed: <div id="reed-status" class="statuslamp" style="background: red;">.</div>
-            Pendelbetrieb: <div id="pendelbetrieb-status" class="statuslamp" style="background: #0d0;">.</div>
-            Richtung: <div id="richtung-status" class="statuslamp" style="background: #0d0;">.</div>
-            
+            <div style="display: none;">
+
+                Batterie: <div id="batterie-status" class="statuslamp" style="background: greenyellow;">.</div>
+                Voll: <div id="voll-status" class="statuslamp">.</div>
+            </div>
+            <table>
+                <tr>
+                    <td>Laden:</td>
+                    <td><div id="laden-status" class="statuslamp" style="background: gray;"></div>
+                    </td>
+                    <td>Reed:</td>
+                    <td><div id="reed-status" class="statuslamp" style="background: red;"></div></td>
+                </tr>
+                <tr>
+                    <td>Pendelbetrieb:</td>
+                    <td><div id="pendelbetrieb-status" class="statuslamp" style="background: #0d0;"></div>
+                    </td>
+                    <td>Richtung:</td>
+                    <td><div id="richtung-status" class="statuslamp" style="background: #0d0;"</div>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
     <div id="controls">
         <label for="speed">Speed: </label><br>
         <br>
-        <progress  type="progress" id="realspeed" min="0" max="255" value="0" disabled></progress><br>
+        <progress type="progress" id="realspeed" min="0" max="255" value="0" disabled></progress><br>
         <br>
         <input type="range" class="rangeslider" id="speed" min="0" max="255" value="0"><br>
         <br>
@@ -59,7 +76,7 @@
             <fieldset>
                 Enable Hysteresis<br>
                 <input type="checkbox" id="enhyst"></input><br>
-                
+
                 Hysteresis<br>
                 <input id="hysteresis" type="range"></intput><br>
             </fieldset>
@@ -68,12 +85,12 @@
 
             Sound Volume<br>
             <input id="soundvol" type="range" min="0" max="30"></intput><br>
-            
+
             motorsound<br>
             <input type="checkbox" id="motorsound"></input><br>
             manual sound playing / advertisements<br>
             <input type="checkbox" id="motorsoundmanadv"></input><br>
-            
+
             <fieldset>
                 motor sound number<br>
                 <input type="number" id="soundmotor" value="1"></input><br>
@@ -114,36 +131,37 @@
                 <input type="range" id="brakepower" min="0" max="100" value="50"><br><br>
             </fieldset>
             <br>
-            
+
             <fieldset>
                 Enable switch direction on reed contact<br>
                 <input type="checkbox" id="reed"></input><br>
                 Dead Time (ms)
                 <input type="number" id="deadtime" value="500"></input><br>
             </fieldset>
-            
+
             <button id="saveSettings">Save Settings</button>
         </div>
     </div>
     <script>
-         saveSettings = document.getElementById("saveSettings");
-         enhyst = document.getElementById("enhyst");
-         hysteresis = document.getElementById("hysteresis");
+        saveSettings = document.getElementById("saveSettings");
+        enhyst = document.getElementById("enhyst");
+        hysteresis = document.getElementById("hysteresis");
 
-         acclbrake = document.getElementById("acclbrake");
-         acceleration = document.getElementById("acceleration");
-         brakepower = document.getElementById("brakepower");
-         update=e=>{
+        acclbrake = document.getElementById("acclbrake");
+        acceleration = document.getElementById("acceleration");
+        brakepower = document.getElementById("brakepower");
+        update = e => {
             hysteresis.disabled = !enhyst.checked;
             acceleration.disabled = !acclbrake.checked;
             brakepower.disabled = !acclbrake.checked;
-         }
-         update();
-         enhyst.onchange=update;
-         acclbrake.onchange=update;
+        }
+        update();
+        enhyst.onchange = update;
+        acclbrake.onchange = update;
 
-        
+
     </script>
     <script src="script.js"></script>
 </body>
+
 </html>
