@@ -98,7 +98,6 @@ async function connect() {
             //console.log(e.target.value);
             const decoder = new TextDecoder();
             const lines = decoder.decode(e.target.value);
-            //console.log(str)
             lines.split("\n").forEach(str=>{
                 const cmd = str.charAt(0);
                 const val = str.substring(1);
@@ -110,6 +109,7 @@ async function connect() {
                 }
                 if(cmd=='d'){
                     dircheckbox.checked = Number(val)!=0;
+                    console.log("recv",str)
                 }
                 if(cmd=='r'){
                     reedStatus.style.background=Number(val)!=0?"red":"gray";

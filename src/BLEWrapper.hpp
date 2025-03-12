@@ -64,11 +64,19 @@ class CharacteristicCallbacks : public BLECharacteristicCallbacks {
             }else{
                 targetPwm = inum;
                 pwmValue = targetPwm;
-                ledcWrite(PWM_CHAN, pwmValue);
+                setSpeed(pwmValue);
+                //ledcWrite(PWM_CHAN, pwmValue);
             }
         }else if(cmd=='d'){//direction
             if(!enreverseonstop||pwmValue==0){
                 setdir(inum);
+                if(pwmValue>0){// 
+                    setSpeed(pwmValue);
+                }
+            }
+            if(enreverseonstop&&pwmValue!=0){
+                characteristic->setValue("d"+std::to_string(dirstate));
+                characteristic->notify();
             }
         }else if(cmd=='p'){//play
             if(playadverts){

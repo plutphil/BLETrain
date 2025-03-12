@@ -1,8 +1,8 @@
-#define PIN_PWM 18
-//#define PIN_PWM 2
-
+//#define PIN_PWM 18
+#define PIN_PWM 32
+//#define PIN_DIR 19
+#define PIN_DIR 33
 #define PWM_CHAN 1
-#define PIN_DIR 19
 
 void initMotor(){
   pinMode(PIN_PWM,OUTPUT);
@@ -25,7 +25,7 @@ void motorStop(){
 bool dirstate = 0;
 void setdir(int dir){
   dirstate = dir;
-  digitalWrite(PIN_DIR,dirstate);
+  //digitalWrite(PIN_DIR,dirstate);
 }
 void reverse(){
   dirstate = !dirstate;
@@ -38,4 +38,15 @@ void foreward(){
 void backWards(){
   digitalWrite(PIN_DIR,1);
   dirstate = 1;
+}
+
+void setSpeed(int pwm){
+  if(dirstate){
+    ledcWrite(PWM_CHAN,255-pwm);
+    digitalWrite(PIN_DIR,1);
+ 
+  }else{
+    ledcWrite(PWM_CHAN,pwm);
+    digitalWrite(PIN_DIR,0);
+  }
 }

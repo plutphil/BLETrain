@@ -1,7 +1,9 @@
 #include "DFRobotDFPlayerMini.h"
 DFRobotDFPlayerMini myDFPlayer;
-#define DFPLAYER_RX 16 
-#define DFPLAYER_TX 17 
+//#define DFPLAYER_RX 16 
+//#define DFPLAYER_TX 17 
+#define DFPLAYER_RX 27 
+#define DFPLAYER_TX 26 
 HardwareSerial mySoftwareSerial(1);
 
 bool playmotorsound = false;

@@ -12,6 +12,7 @@ void Demo_Task(void *arg)
 {
     for(;;){
         float batval = readBattery();
+        batval = batval/4096.f*3.3f*10.f;
         printf("\rBatVal %0.2f    ",batval);
         characteristic->setValue(String(String("b")+batval).c_str());
         characteristic->notify();
@@ -118,7 +119,8 @@ void loop() {
             }
         }else{
         }
-        ledcWrite(PWM_CHAN, pwmValue);
+        setSpeed(pwmValue);
+        //ledcWrite(PWM_CHAN, pwmValue);
     }
     
 }
