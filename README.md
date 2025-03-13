@@ -6,3 +6,5 @@ The webapp is in the folder with the same name.
 - Android App (just put the webapp into an android app)
 - charge rail
 - more settings
+
+https://plutphil.github.io/BLETrain/webinterface/
